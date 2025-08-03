@@ -301,14 +301,8 @@ class AILab_MaskOverlay(AILab_PreviewBase):
         if mask is None:
             mask = torch.zeros((1, 64, 64))
 
-        # Save preview for display
-        result = self.save_image(preview, filename_prefix, prompt, extra_pnginfo)
-        
-        # Return both the image and mask for further processing
-        return {
-            "ui": result["ui"] if "ui" in result else {},
-            "result": (preview, mask)
-        }
+        # Only return the image and mask, no UI/preview
+        return (preview, mask)
 
 # Mask preview node
 class AILab_MaskPreview(AILab_PreviewBase):
